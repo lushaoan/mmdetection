@@ -1,11 +1,25 @@
+"""
+Author: Lu ShaoAn
+Brief: 
+Version: 0.1
+Date: 2024-10-28 15:01:23
+Copyright: Copyright (c) 2022
+LastEditTime: 2024-10-28 15:01:23
+"""
+
 # Copyright (c) OpenMMLab. All rights reserved.
 from typing import Optional, Sequence, Union
 
 from torch import Tensor
 
 from mmdet.registry import TASK_UTILS
-from mmdet.structures.bbox import (BaseBoxes, HorizontalBoxes, bbox2distance,
-                                   distance2bbox, get_box_tensor)
+from mmdet.structures.bbox import (
+    BaseBoxes,
+    HorizontalBoxes,
+    bbox2distance,
+    distance2bbox,
+    get_box_tensor,
+)
 from .base_bbox_coder import BaseBBoxCoder
 
 
@@ -25,11 +39,13 @@ class DistancePointBBoxCoder(BaseBBoxCoder):
         super().__init__(**kwargs)
         self.clip_border = clip_border
 
-    def encode(self,
-               points: Tensor,
-               gt_bboxes: Union[Tensor, BaseBoxes],
-               max_dis: Optional[float] = None,
-               eps: float = 0.1) -> Tensor:
+    def encode(
+        self,
+        points: Tensor,
+        gt_bboxes: Union[Tensor, BaseBoxes],
+        max_dis: Optional[float] = None,
+        eps: float = 0.1,
+    ) -> Tensor:
         """Encode bounding box to distances.
 
         Args:
@@ -53,8 +69,9 @@ class DistancePointBBoxCoder(BaseBBoxCoder):
         self,
         points: Tensor,
         pred_bboxes: Tensor,
-        max_shape: Optional[Union[Sequence[int], Tensor,
-                                  Sequence[Sequence[int]]]] = None
+        max_shape: Optional[
+            Union[Sequence[int], Tensor, Sequence[Sequence[int]]]
+        ] = None,
     ) -> Union[Tensor, BaseBoxes]:
         """Decode distance prediction to bounding box.
 
